@@ -10,7 +10,6 @@ export default class LoginService {
 
   getRole = (token: string) => {
     const { role } = decodeJwt(token);
-
     return { role };
   };
 }
