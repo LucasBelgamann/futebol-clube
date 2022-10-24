@@ -8,6 +8,6 @@ const userController = new UserController();
 const validateLogin = new ValidateLogin();
 
 router.get('/validate', validateLogin.authentication, userController.getLogin);
-router.post('/', validateLogin.authentication, userController.postLogin);
+router.post('/', validateLogin.authentication);
 
-export default Router;
+export default router;

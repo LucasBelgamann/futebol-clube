@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { compare } from 'bcryptjs';
 import Service from '../services/Login.service';
+import createToken from '../utils/createToken';
 
 class ValidateLogin {
   public service: Service;
@@ -21,6 +22,14 @@ class ValidateLogin {
     const comparePassword = await compare(password, user.password);
 
     if (!comparePassword) return res.status(401).json({ message: 'Incorrect email or password' });
+
+    const userRole = {
+      role: user?.role,
+      password: user?.password,
+    };
+
+    const token = createToken(userRole);
+    res.status(200).json({ token });
 
     next();
   };
