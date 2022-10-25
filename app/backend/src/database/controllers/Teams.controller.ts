@@ -2,14 +2,14 @@ import { Request, Response } from 'express';
 import Teams from '../models/Teams.model';
 
 class TeamsController {
-  getTeams = (req: Request, res: Response) => {
-    const teams = Teams.findAll();
+  getTeams = async (req: Request, res: Response) => {
+    const teams = await Teams.findAll();
     return res.status(200).json(teams);
   };
 
-  getTeamsById = (req: Request, res: Response) => {
+  getTeamsById = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const teams = Teams.findByPk(id);
+    const teams = await Teams.findOne({ where: { id } });
     return res.status(200).json(teams);
   };
 }
