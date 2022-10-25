@@ -13,6 +13,8 @@ class MachesController {
       const matches = MatchesService.getAllMatches({ where: { inProgress: true } });
       return res.status(200).json(matches);
     }
+    const matches = MatchesService.getAllMatches({ where: { inProgress: false } });
+    return res.status(200).json(matches);
   };
 }
 
