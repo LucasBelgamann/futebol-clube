@@ -1,24 +1,18 @@
 import { Request, Response } from 'express';
-import Matches from '../models/Matches.model';
-import Teams from '../models/Teams.model';
+import MatchesService from '../services/Matches.service';
 
 class MachesController {
   getMatches = (_req: Request, res: Response) => {
-    const matches = Matches.findAll({
-      include: [
-        {
-          model: Teams,
-          as: 'teamHome',
-          attributes: ['teamName'],
-        },
-        {
-          model: Teams,
-          as: 'teamAway',
-          attributes: ['teamName'],
-        },
-      ],
-    });
+    const matches = MatchesService.getAllMatches();
     return res.status(200).json(matches);
+  };
+
+  getProgressTrue = (req: Request, res: Response) => {
+    const { inProgress } = req.query;
+    if (inProgress) {
+      const matches = MatchesService.getAllMatches({ where: { inProgress: true } });
+      return res.status(200).json(matches);
+    }
   };
 }
 
