@@ -22,6 +22,7 @@ describe('Testando o endpoint /teams', () => {
       const response = await chai.request(app).post('/teams').send(getAllTeams);
 
       expect(response.status).to.be.equal(200);
+      expect(response.body).to.be.equal(getAllTeams as Team[]);
     });
     it('returns status 200 to getTeamsById function', async () => {
         sinon.stub(Team, 'findByPk').resolves(oneTeam as Team);
@@ -29,6 +30,7 @@ describe('Testando o endpoint /teams', () => {
         const response = await chai.request(app).post('/teams/1').send(oneTeam);
   
         expect(response.status).to.be.equal(200);
+        expect(response.body).to.be.equal(oneTeam as Team);
       });
   })
 });
