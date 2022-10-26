@@ -9,12 +9,12 @@ export default class LoginController {
     this.loginService = new Service();
   }
 
-  getLogin(req: Request, res: Response) {
+  async getLogin(req: Request, res: Response) {
     const { authorization } = req.headers;
 
     if (!authorization) return res.status(200).json({ message: 'unauthenticated' });
 
-    const roleUser = this.loginService.getRole(authorization);
+    const roleUser = await this.loginService.getRole(authorization);
 
     return res.status(201).json(roleUser);
   }

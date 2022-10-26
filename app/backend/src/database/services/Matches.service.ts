@@ -21,6 +21,11 @@ class MatchesService {
     });
     return matches;
   };
+
+  createNewMatch = async (match: Matches) => {
+    const createMatch = await Matches.create({ ...match, inProgress: true });
+    return createMatch;
+  };
 }
 
 export default new MatchesService();
