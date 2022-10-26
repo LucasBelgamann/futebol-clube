@@ -20,6 +20,10 @@ class MachesController {
 
   createNewMatches = async (req: Request, res: Response) => {
     const matchBody = req.body;
+    if (matchBody.homeTeam === matchBody.awayTeam) {
+      return res.status(422)
+        .json({ message: 'It is not possible to create a match with two equal teams' });
+    }
 
     const newMatch = await this.matchesService.createNewMatch(matchBody);
 

@@ -1,33 +1,16 @@
 import { Request, Response } from 'express';
 import Service from '../services/Login.service';
-// import createToken from '../utils/createToken';
 
-export default class LoginController {
-  private loginService: Service;
+const loginService = new Service();
 
-  constructor() {
-    this.loginService = new Service();
-  }
+const getLogin = (req: Request, res: Response) => {
+  const { authorization } = req.headers;
 
-  async getLogin(req: Request, res: Response) {
-    const { authorization } = req.headers;
+  if (!authorization) return res.status(200).json({ message: 'unauthenticated' });
 
-    if (!authorization) return res.status(200).json({ message: 'unauthenticated' });
+  const roleUser = loginService.getRole(authorization);
 
-    const roleUser = await this.loginService.getRole(authorization);
+  return res.status(200).json(roleUser);
+};
 
-    return res.status(201).json(roleUser);
-  }
-
-  // async postLogin(req: Request, res: Response) {
-  //   const { email } = req.body;
-  //   const user = await this.loginService.getByEmail(email);
-  //   const userRole = {
-  //     role: user?.role,
-  //     password: user?.password,
-  //   };
-
-  //   const token = createToken(userRole);
-  //   res.status(200).json({ token });
-  // }
-}
+export default getLogin;

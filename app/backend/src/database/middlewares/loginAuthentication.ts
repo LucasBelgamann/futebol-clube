@@ -24,8 +24,8 @@ class ValidateLogin {
     if (!comparePassword) return res.status(401).json({ message: 'Incorrect email or password' });
 
     const userRole = {
-      role: user?.role,
-      password: user?.password,
+      role: user.role,
+      password: user.password,
     };
 
     const token = createToken(userRole);

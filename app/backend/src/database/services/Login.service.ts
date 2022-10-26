@@ -8,7 +8,7 @@ export default class LoginService {
     return getUser;
   };
 
-  getRole = async (token: string) => {
+  getRole = (token: string) => {
     const { role } = decodeJwt(token);
     return { role };
   };
