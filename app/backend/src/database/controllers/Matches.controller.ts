@@ -18,11 +18,11 @@ class MachesController {
     const matchBody = req.body;
     try {
       if (!authorization) {
-        return res.status(401).json({ message: 'Invalid authorization' });
+        return res.status(401).json({ message: 'Token must be a valid token' });
       }
       decodeJwt(authorization);
     } catch {
-      return res.status(401).json({ message: 'Invalid authorization' });
+      return res.status(401).json({ message: 'Token must be a valid token' });
     }
 
     const newMatch = await MatchesService.createNewMatch(matchBody);
