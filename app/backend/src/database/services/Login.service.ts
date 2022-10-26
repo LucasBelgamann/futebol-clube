@@ -3,12 +3,12 @@ import { IUser } from '../interfaces/IUser';
 import decodeJwt from '../utils/decodeToken';
 
 export default class LoginService {
-  getByEmail = (email: string): Promise<IUser | null> => {
-    const getUser = User.findOne({ where: { email } });
+  getByEmail = async (email: string): Promise<IUser | null> => {
+    const getUser = await User.findOne({ where: { email } });
     return getUser;
   };
 
-  getRole = (token: string) => {
+  getRole = async (token: string) => {
     const { role } = decodeJwt(token);
     return { role };
   };

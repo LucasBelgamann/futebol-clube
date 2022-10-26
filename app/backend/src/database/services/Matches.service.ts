@@ -3,8 +3,8 @@ import Matches from '../models/Matches.model';
 import { IInProgress } from '../types/IInProgress';
 
 class MatchesService {
-  getAllMatches = <T>(inProgress?: IInProgress<T>): Promise<Matches[] | []> => {
-    const matches = Matches.findAll({
+  getAllMatches = async <T>(inProgress?: IInProgress<T>): Promise<Matches[] | []> => {
+    const matches = await Matches.findAll({
       include: [
         {
           model: Teams,
