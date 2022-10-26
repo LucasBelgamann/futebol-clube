@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import Controller from '../controllers/Matches.controller';
-// import ValidateLogin from '../middlewares/loginAuthentication';
+import authenticationMatches from '../middlewares/validateCreateMatches';
 
 const router = Router();
-// const validateLogin = new ValidateLogin();
 
 router.get('/', Controller.getMatches);
-router.post('/', Controller.createNewMatches);
+router.post('/', authenticationMatches, Controller.createNewMatches);
+router.patch('/:id/finish', Controller.updateId);
 
 export default router;
