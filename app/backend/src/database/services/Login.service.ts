@@ -5,6 +5,7 @@ import decodeJwt from '../utils/decodeToken';
 export default class LoginService {
   getByEmail = async (email: string): Promise<IUser | null> => {
     const getUser = await User.findOne({ where: { email } });
+
     return getUser;
   };
 
