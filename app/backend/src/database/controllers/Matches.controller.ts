@@ -10,11 +10,15 @@ class MachesController {
 
   getMatches = async (req: Request, res: Response) => {
     const { inProgress } = req.query;
-    if (inProgress) {
+    if (inProgress === 'true') {
       const matches = await this.matchesService.getAllMatches({ where: { inProgress: true } });
       return res.status(200).json(matches);
     }
-    const matches = await this.matchesService.getAllMatches({ where: { inProgress: false } });
+    if (inProgress === 'false') {
+      const matches = await this.matchesService.getAllMatches({ where: { inProgress: false } });
+      return res.status(200).json(matches);
+    }
+    const matches = await this.matchesService.getAllMatches();
     return res.status(200).json(matches);
   };
 
