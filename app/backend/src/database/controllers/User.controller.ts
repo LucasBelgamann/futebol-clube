@@ -1,16 +1,22 @@
 import { Request, Response } from 'express';
 import Service from '../services/Login.service';
 
-const loginService = new Service();
+class LoginController {
+  private service: Service;
 
-const getLogin = (req: Request, res: Response) => {
-  const { authorization } = req.headers;
+  constructor() {
+    this.service = new Service();
+  }
 
-  if (!authorization) return res.status(200).json({ message: 'unauthenticated' });
+  getLogin = (req: Request, res: Response) => {
+    const { authorization } = req.headers;
 
-  const roleUser = loginService.getRole(authorization);
+    if (!authorization) return res.status(200).json({ message: 'unauthenticated' });
 
-  return res.status(200).json(roleUser);
-};
+    const roleUser = this.service.getRole(authorization);
 
-export default getLogin;
+    return res.status(200).json(roleUser);
+  };
+}
+
+export default LoginController;
