@@ -12,11 +12,15 @@ class MachesController {
     const { inProgress } = req.query;
 
     if (inProgress === 'true') {
-      const matches = await this.matchesService.getAllMatches({ where: { inProgress: true } });
+      const matches = await this.matchesService.getAllMatches({
+        where: { inProgress: true },
+      });
       return res.status(200).json(matches);
     }
     if (inProgress === 'false') {
-      const matches = await this.matchesService.getAllMatches({ where: { inProgress: false } });
+      const matches = await this.matchesService.getAllMatches({
+        where: { inProgress: false },
+      });
       return res.status(200).json(matches);
     }
     const matches = await this.matchesService.getAllMatches();
@@ -26,8 +30,22 @@ class MachesController {
   createNewMatches = async (req: Request, res: Response) => {
     const matchBody = req.body;
     if (matchBody.homeTeam === matchBody.awayTeam) {
-      return res.status(422)
-        .json({ message: 'It is not possible to create a match with two equal teams' });
+      return res
+        .status(422)
+        .json({
+          message: 'It is not possible to create a match with two equal teams',
+        });
+    }
+
+    const teamValidation = await this.matchesService.getById([
+      matchBody.homeTeam,
+      matchBody.awayTeam,
+    ]);
+
+    if ('status' in teamValidation) {
+      const { status, message } = teamValidation;
+
+      return res.status(status).json({ message });
     }
 
     const newMatch = await this.matchesService.createNewMatch(matchBody);

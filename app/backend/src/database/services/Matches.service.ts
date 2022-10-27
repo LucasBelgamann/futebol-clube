@@ -32,6 +32,20 @@ class MatchesService {
     const message = { message: 'Finished' };
     return message;
   };
+
+  getById = async (ids: number[]) => {
+    const error = {
+      status: 404,
+      message: 'There is no team with such id!',
+    };
+    const teams = await Promise.all(ids.map((id) => Teams.findOne({ where: { id } })));
+
+    const verifyInvalidTeam = teams.some((team) => !team);
+
+    if (verifyInvalidTeam) return error;
+
+    return teams;
+  };
 }
 
 export default MatchesService;
