@@ -1,6 +1,7 @@
 import Teams from '../models/Teams.model';
 import Matches from '../models/Matches.model';
 import { IInProgress } from '../types/IInProgress';
+import { IGoals } from '../interfaces/IGoals';
 
 class MatchesService {
   getAllMatches = async <T>(inProgress?: IInProgress<T>): Promise<Matches[] | []> => {
@@ -45,6 +46,17 @@ class MatchesService {
     if (verifyInvalidTeam) return error;
 
     return teams;
+  };
+
+  updateById = async (id: string, goals: IGoals) => {
+    const { awayTeamGoals, homeTeamGoals } = goals;
+    await Matches.update({ awayTeamGoals, homeTeamGoals }, { where: { id } });
+
+    const findId = await Matches.findOne({
+      where: { id },
+    });
+
+    return findId;
   };
 }
 

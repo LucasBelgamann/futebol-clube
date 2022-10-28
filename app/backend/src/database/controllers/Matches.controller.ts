@@ -58,6 +58,15 @@ class MachesController {
     const { message } = await this.matchesService.updateId(Number(id));
     return res.status(200).json(message);
   };
+
+  updateById = async (req: Request, res: Response) => {
+    const goals = req.body;
+    const { id } = req.params;
+
+    const findId = await this.matchesService.updateById(id, goals);
+
+    res.status(200).json(findId);
+  };
 }
 
 export default new MachesController();
