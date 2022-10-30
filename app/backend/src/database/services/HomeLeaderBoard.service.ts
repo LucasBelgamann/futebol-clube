@@ -12,7 +12,8 @@ import {
 import getAllTeams from './Teams.service';
 import Matches from '../models/Matches.model';
 import Teams from '../models/Teams.model';
-import IHomeMatch from '../interfaces/ILeader';
+import { IHomeMatch } from '../interfaces/ILeader';
+import { orderLeaderboard } from '../middlewares/awayLeaderBoard';
 
 class HomeLeader {
   findAllHomeTeamMatches = async () => {
@@ -54,14 +55,9 @@ class HomeLeader {
     return matchMap;
   };
 
-  sortLeaderboardHome = async () => {
+  orderLeaderboardHome = async () => {
     const leaderboard = await this.leaderboardHome();
-    const result = leaderboard.sort(
-      (a, b) =>
-        b.totalPoints - a.totalPoints
-              || b.totalVictories - a.totalVictories || b.goalsBalance - a.goalsBalance
-              || b.goalsFavor - a.goalsFavor || b.goalsOwn - a.goalsOwn,
-    );
+    const result = await orderLeaderboard(leaderboard);
     return result;
   };
 }
