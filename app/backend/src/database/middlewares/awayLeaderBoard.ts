@@ -55,8 +55,10 @@ const calculatingGolsFavor = (matches: IAwayMatch[]) => {
   let gols = 0;
 
   matches.forEach((match) => {
-    const { homeTeamGoals } = match;
-    if (homeTeamGoals) gols += homeTeamGoals;
+    const { awayTeamGoals } = match;
+    if (awayTeamGoals) {
+      gols += awayTeamGoals;
+    }
   });
   return gols;
 };
@@ -65,9 +67,9 @@ const calculatingGolsContra = (matches: IAwayMatch[]) => {
   let gols = 0;
 
   matches.forEach((match) => {
-    const { awayTeamGoals } = match;
-    if (awayTeamGoals) {
-      gols += awayTeamGoals;
+    const { homeTeamGoals } = match;
+    if (homeTeamGoals) {
+      gols += homeTeamGoals;
     }
   });
   return gols;
@@ -83,13 +85,13 @@ const calculatingTotalScore = (matches: IAwayMatch[]) => {
 
 const calculatingVicPerc = (matches: IAwayMatch[]) => {
   const points = calculatingPoints(matches);
-  const matchess = matches.length * 3;
-  const victoryPercentage = points / matchess;
+  const partidas = matches.length * 3;
+  const victoryPercentage = points / partidas;
 
   if (!Number.isInteger(victoryPercentage * 100)) {
     return (victoryPercentage * 100).toFixed(2);
   }
-  return (victoryPercentage * 100);
+  return victoryPercentage * 100;
 };
 
 const orderLeaderboard = async (leaderBoard: ILeaderScore[]) => {

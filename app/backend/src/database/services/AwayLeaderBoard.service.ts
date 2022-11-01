@@ -18,6 +18,9 @@ import { IAwayMatch } from '../interfaces/ILeader';
 class LeaderboardAway {
   getAllAwayTeamMatches = async () => {
     const result = await Matches.findAll({
+      where: {
+        inProgress: false,
+      },
       include: [
         {
           model: Teams,
@@ -27,9 +30,6 @@ class LeaderboardAway {
           },
         },
       ],
-      where: {
-        inProgress: false,
-      },
     });
     return result as unknown as IAwayMatch[];
   };
@@ -44,8 +44,8 @@ class LeaderboardAway {
         totalPoints: calculatingPoints(away),
         totalGames: away.length,
         totalVictories: calculatingVictories(away),
-        totalDraws: calculatingLosses(away),
-        totalLosses: calculatingDraw(away),
+        totalDraws: calculatingDraw(away),
+        totalLosses: calculatingLosses(away),
         goalsFavor: calculatingGolsFavor(away),
         goalsOwn: calculatingGolsContra(away),
         goalsBalance: calculatingTotalScore(away),
