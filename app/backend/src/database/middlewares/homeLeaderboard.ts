@@ -92,9 +92,7 @@ const calculatingVicPerc = (matches: IHomeMatch[]) => {
   return (victoryPercentage * 100);
 };
 
-const percentualEffi = (p: number, g: number) => {
-  Number(((p / (g * 3)) * 100).toFixed(2));
-};
+const percentualEffi = (p: number, g: number) => Number(((p / (g * 3)) * 100).toFixed(2));
 
 export {
   calculatingPoints,
