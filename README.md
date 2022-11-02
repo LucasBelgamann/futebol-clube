@@ -19,6 +19,6 @@
 * <a href="https://www.mysql.com/" target="blanck" >MySql</a> - Sistema de gerenciamento de banco de dados.
 * <a href="https://www.devmedia.com.br/arquitetura-de-software-desenvolvimento-orientado-para-arquitetura/8033" target="blanck" >MSC</a> - Sistema de arquitetura de software.
 * <a href="https://sequelize.org/" target="blanck" >Sequelize</a> - Interface da aplicação com o banco de dados.
-* <a href="https://sequelize.org/" target="blanck" >POO (Programação orientada a objetos)</a> - Para a estruturar o projeto.
+* <a href="https://sequelize.org/" target="blanck" >POO (Programação orientada a objetos)</a> - Estrutura do projeto.
 * <a href="https://www.typescriptlang.org/" target="blanck" >Typescript</a> -Linguagem de programação utilizada.
 * <a href="https://expressjs.com/pt-br/" target="blanck" >Express</a> - Framework para Node.js que fornece recursos mínimos para construção de servidores web.
