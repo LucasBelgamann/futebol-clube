@@ -11,7 +11,7 @@
   O back-end foi implementado junto com as regras de negócio para popular adequadamente a tabela disponível no front-end que será exibida para a pessoa usuária do sistema.
 
 # Como foi desenvolvimento
-Esse projeto foi feito individualmente dentro da organização da <a href="https://www.betrybe.com/" target="blanck" ><img src="https://blog.betrybe.com/wp-content/uploads/2021/11/51808343.png" width="36" height="36" alt="Jest" /></a>
+Esse projeto foi feito individualmente dentro da organização da <a href="https://www.betrybe.com/" target="blanck" ><img src="https://blog.betrybe.com/wp-content/uploads/2021/11/51808343.png" width="30" height="33" alt="Jest" /></a>
 .
 
 # Construído com
