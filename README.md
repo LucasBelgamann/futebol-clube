@@ -1,6 +1,6 @@
-# Boas vindas ao repositório do Futebol Clube!⚽️
+# Boas vindas ao repositório do Futebol Clube!
 
- O `TFC` é um site informativo sobre partidas e classificações de futebol!
+ O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
 
   Nesse projeto, foi contruido **um back-end dockerizado utilizando modelagem de dados através do Sequelize**. Seu desenvolvimento **respeitou regras de negócio** providas no projeto, juntamente com a arquitetura de software MSC (model-service-controller) para que **a API fosse capaz de ser consumida pelo front-end da aplicação**.
   
